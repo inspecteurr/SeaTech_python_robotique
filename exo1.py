@@ -107,35 +107,61 @@ if __name__ == '__main__' :
     r1 = Robot()
 
 while (True) :
-    print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\nResum --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
-    action = input('\nJe suis a ton service, dis moi quoi faire : \n')
 
-    if keyboard.read_key() == "a":
-        r1.allumage()
+
+    # print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\nResum --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
+    # action = input('\nJe suis a ton service, dis moi quoi faire : \n')
+
+    # if keyboard.read_key() == "a":
+    #     r1.allumage()
     
-    if keyboard.read_key() == "z":
-        vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
-        vitesse = int(vitesse)
-        r1.acceleration(vitesse)
+    # if keyboard.read_key() == "z":
+    #     vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
+    #     vitesse = int(vitesse)
+    #     r1.acceleration(vitesse)
 
-    if keyboard.read_key() == "e":
-        vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
-        vitesse = int(vitesse)
-        r1.deceleration(vitesse)
+    # if keyboard.read_key() == "e":
+    #     vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
+    #     vitesse = int(vitesse)
+    #     r1.deceleration(vitesse)
 
-    if keyboard.read_key() == "r":
+    # if keyboard.read_key() == "r":
+    #     r1.resum()
+
+    # if keyboard.read_key() == "s":
+    #     r1.stop()
+
+    # if keyboard.read_key() == "c":
+    #     r1.charge()
+
+    # if keyboard.read_key() == "q":
+    #     r1.eteignage()
+
+    action = input('\nJe suis à votre service, que voulez vous que je fasse ? \n')
+
+    if (action == "allumage") :
+        r1.allumage()
+
+    if (action == "acceleration") :
+        r1.acceleration()
+
+    if (action == "décélération") :
+        r1.deceleration()
+
+    if (action == "resum") :
         r1.resum()
 
-    if keyboard.read_key() == "s":
+    if (action == "stop") :
         r1.stop()
 
-    if keyboard.read_key() == "c":
+    if (action == "charge") :
         r1.charge()
 
-    if keyboard.read_key() == "q":
+    if (action == "eteindre") :
         r1.eteignage()
 
-
+    
+    
 
 
         
