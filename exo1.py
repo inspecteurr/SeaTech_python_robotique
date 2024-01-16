@@ -1,14 +1,24 @@
 import time
 import keyboard
 
+def StartedAction(f):
+    def wrapper(*args):
+        obj:Robot = args[0]
+        if obj.power:
+            return f(*args)
+        else:
+            print("\nIl faut m'allumer avant gros malin")
+    return wrapper
+
 
 
 class Robot():
     
-    __slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level','__speed_min')
-        
-    def __init__(self):
-        self.__name = input('\nJe viens de naitre, donne moi un nom maître :-O \n')
+    #__slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level','__speed_min')
+    
+    def __init__(self,name):
+        self.__name = name
+        #input('\nJe viens de naitre, donne moi un nom maître :-O \n')
         self.__power = False
         self.__current_speed = 0
         self.__speed_max = 100
@@ -42,47 +52,43 @@ class Robot():
         if (self.__battery_level == 100):
             print("La batterie est full mon reuf")
 
+    @StartedAction
     def acceleration(self,vitesse):
-        if (self.__power == True):
-            print("\nOk je cours ! Attend moi")
-            if (vitesse>0):
-                while (self.__current_speed <vitesse) :
-                    if (self.__current_speed<=self.__speed_max):
-                        self.__current_speed = self.__current_speed + 1
-                        self.__battery_level = self.__battery_level - 1
-                        time.sleep(0.2)
-            else : 
-                while (self.__current_speed >vitesse) :
-                    if (self.__current_speed>=self.__speed_min):
-                        self.__current_speed = self.__current_speed - 1
-                        self.__battery_level = self.__battery_level - 1
-                        time.sleep(0.2)
-            print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed, "\nMa batterie est descendu à : ",self.__battery_level)
-        else :
-            print("\nIl faut m'allumer avant gros malin")
+        print("\nOk je cours ! Attend moi")
+        if (vitesse>0):
+            while (self.__current_speed <vitesse) :
+                if (self.__current_speed<=self.__speed_max):
+                    self.__current_speed = self.__current_speed + 1
+                    self.__battery_level = self.__battery_level - 1
+                    time.sleep(0.2)
+        else : 
+            while (self.__current_speed >vitesse) :
+                if (self.__current_speed>=self.__speed_min):
+                    self.__current_speed = self.__current_speed - 1
+                    self.__battery_level = self.__battery_level - 1
+                    time.sleep(0.2)
+        print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed, "\nMa batterie est descendu à : ",self.__battery_level)
 
+
+    @StartedAction
     def deceleration(self,vitesse):
-        if (self.__power == True):
-            print("\nTéma comment je tire le frein à main mon copaing !")
-            while (self.__current_speed >vitesse and self.__current_speed>0) :
-                self.__current_speed = self.__current_speed - 1
-                time.sleep(0.2)
-            print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed)
-        else :
-            print("\nIl faut m'allumer avant gros malin, mais ducoup ma vitesse est nulle")
+        print("\nTéma comment je tire le frein à main mon copaing !")
+        while (self.__current_speed >vitesse and self.__current_speed>0) :
+            self.__current_speed = self.__current_speed - 1
+            time.sleep(0.2)
+        print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed)
 
+    @StartedAction
     def stop(self):
-        if (self.__power == True):
-            while (self.__current_speed != 0) :
-                    if (vitesse>0):
-                        self.__current_speed = self.__current_speed - 1
-                        time.sleep(0.2)
-                    else :
-                        self.__current_speed = self.__current_speed + 1
-                        time.sleep(0.2)
-            print("\nC'est bon, je me suis arrété, ma vitesse est de : ", self.__current_speed)
-        else :
-            print("\nIl faut m'allumer avant gros malin")
+        while (self.__current_speed != 0) :
+                if (vitesse>0):
+                    self.__current_speed = self.__current_speed - 1
+                    time.sleep(0.2)
+                else :
+                    self.__current_speed = self.__current_speed + 1
+                    time.sleep(0.2)
+        print("\nC'est bon, je me suis arrété, ma vitesse est de : ", self.__current_speed)
+
 
     def summary(self):
         print("\nMon nom est : ", self.__name, "\nMa batterie est à ", self.__battery_level,"%","\nMa vitesse est de : ",self.__current_speed,"\nMa vitesse max est de : ",self.__speed_max)
@@ -116,11 +122,19 @@ class Robot():
     def speed_max(self,speed_max):
         self.__speed_max = speed_max
 
+    @property
+    def name(self):
+        return self.__name
+
+    @power.setter
+    def name(self,name):
+        self.__name = name
+
 
 if __name__ == '__main__' :
-    r1 = Robot()
+    r1 = Robot("Grégoire")
 
-    print("\nVoila ma notice : \nAllumer --> start\nAccelerer --> acceleration\nDécélérer --> décélération\summary --> summary\nStop --> stop\nCharge --> charge\Off --> off\n")
+    print("\nVoila ma notice : \nAllumer --> start\nAccelerer --> acceleration\nDécélérer --> décélération\summary --> summary\nStop --> stop\nCharge --> charge\nOff --> off\n")
         
     
     while (True) :
