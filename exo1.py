@@ -3,6 +3,7 @@ import keyboard
 
 class Robot():
     
+    __slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level')
         
     def __init__(self):
         self.__name = input('\nJe viens de naitre, donne moi un nom maître :-O \n')
@@ -12,20 +13,20 @@ class Robot():
         self.__battery_level = 100
         self.resum()
 	
-    def allumage(self):
+    def start(self):
         self.__power = True
         self.__battery_level = self.__battery_level - 5
 
         if (0<= self.__battery_level <10) :
             if (self.__battery_level ==0) :
                 print("La batterie est vide mon reuf !!")
-                self.eteignage()
+                self.off()
             print("\nFais gaffe ! La batterie est à : ", self.__battery_level, "%")
 
         print("Je suis allumé mon reuf, ma batterie est à : ",self.__battery_level)
         
                     
-    def eteignage(self):
+    def off(self):
         self.deceleration(0)
         self.__current_speed = 0
         self.__power = False
@@ -106,63 +107,66 @@ class Robot():
 if __name__ == '__main__' :
     r1 = Robot()
 
-while (True) :
+    while (True) :
 
 
-    # print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\nResum --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
-    # action = input('\nJe suis a ton service, dis moi quoi faire : \n')
+        # print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\nResum --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
+        # action = input('\nJe suis a ton service, dis moi quoi faire : \n')
 
-    # if keyboard.read_key() == "a":
-    #     r1.allumage()
-    
-    # if keyboard.read_key() == "z":
-    #     vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
-    #     vitesse = int(vitesse)
-    #     r1.acceleration(vitesse)
+        # if keyboard.read_key() == "a":
+        #     r1.start()
+        
+        # if keyboard.read_key() == "z":
+        #     vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
+        #     vitesse = int(vitesse)
+        #     r1.acceleration(vitesse)
+        #vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
+        #     vitesse = int(vitesse)
+        # if keyboard.read_key() == "e":
+        #     vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
+        #     vitesse = int(vitesse)
+        #     r1.deceleration(vitesse)
 
-    # if keyboard.read_key() == "e":
-    #     vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
-    #     vitesse = int(vitesse)
-    #     r1.deceleration(vitesse)
+        # if keyboard.read_key() == "r":
+        #     r1.resum()
 
-    # if keyboard.read_key() == "r":
-    #     r1.resum()
+        # if keyboard.read_key() == "s":
+        #     r1.stop()
 
-    # if keyboard.read_key() == "s":
-    #     r1.stop()
+        # if keyboard.read_key() == "c":
+        #     r1.charge()
 
-    # if keyboard.read_key() == "c":
-    #     r1.charge()
+        # if keyboard.read_key() == "q":
+        #     r1.off()
 
-    # if keyboard.read_key() == "q":
-    #     r1.eteignage()
+        action = input('\nJe suis à votre service, que voulez vous que je fasse ? \n')
 
-    action = input('\nJe suis à votre service, que voulez vous que je fasse ? \n')
+        if (action == "start") :
+            r1.start()
 
-    if (action == "allumage") :
-        r1.allumage()
+        if (action == "acceleration") :
+            vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
+            vitesse = int(vitesse)
+            r1.acceleration(vitesse)
 
-    if (action == "acceleration") :
-        vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
-        vitesse = int(vitesse)
-        r1.acceleration(vitesse)
+        if (action == "décélération") :
+            vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
+            vitesse = int(vitesse)
+            r1.deceleration(vitesse)
 
-    if (action == "décélération") :
-        vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
-        vitesse = int(vitesse)
-        r1.deceleration(vitesse)
+        if (action == "resum") :
+            r1.resum()
 
-    if (action == "resum") :
-        r1.resum()
+        if (action == "stop") :
+            r1.stop()
 
-    if (action == "stop") :
-        r1.stop()
+        if (action == "charge") :
+            r1.charge()
 
-    if (action == "charge") :
-        r1.charge()
+        if (action == "off") :
+            r1.off()
 
-    if (action == "eteindre") :
-        r1.eteignage()
+
 
     
     
