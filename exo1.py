@@ -11,7 +11,7 @@ class Robot():
         self.__current_speed = 0
         self.__speed_max = 100
         self.__battery_level = 100
-        self.resum()
+        self.summary()
 	
     def start(self):
         self.__power = True
@@ -33,7 +33,7 @@ class Robot():
 
     def charge(self):
         while (self.__battery_level <100) :
-                print("La batterie est à : ", self.__battery_level, "%")
+                print("La batterie est à : ", self.__battery_level, "%\r")
                 self.__battery_level = self.__battery_level + 1
                 time.sleep(0.1)
         if (self.__battery_level == 100):
@@ -71,7 +71,7 @@ class Robot():
         else :
             print("\nIl faut m'allumer avant gros malin")
 
-    def resum(self):
+    def summary(self):
         print("\nMon nom est : ", self.__name, "\nMa batterie est à ", self.__battery_level,"%","\nMa vitesse est de : ",self.__current_speed,"\nMa vitesse max est de : ",self.__speed_max)
         if (self.__power == True):
             print("\nJe suis allumé")
@@ -110,7 +110,7 @@ if __name__ == '__main__' :
     while (True) :
 
 
-        # print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\nResum --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
+        # print("\nVoila ma notice : \nAllumer --> a\nAccelerer --> z\nDécélérer --> e\summary --> r\nStop --> s\nCharge --> c\nEteindre --> q\n")
         # action = input('\nJe suis a ton service, dis moi quoi faire : \n')
 
         # if keyboard.read_key() == "a":
@@ -128,7 +128,7 @@ if __name__ == '__main__' :
         #     r1.deceleration(vitesse)
 
         # if keyboard.read_key() == "r":
-        #     r1.resum()
+        #     r1.summary()
 
         # if keyboard.read_key() == "s":
         #     r1.stop()
@@ -139,6 +139,7 @@ if __name__ == '__main__' :
         # if keyboard.read_key() == "q":
         #     r1.off()
 
+        print("\nVoila ma notice : \nAllumer --> start\nAccelerer --> acceleration\nDécélérer --> décélération\summary --> summary\nStop --> stop\nCharge --> charge\Off --> off\n")
         action = input('\nJe suis à votre service, que voulez vous que je fasse ? \n')
 
         if (action == "start") :
@@ -154,8 +155,8 @@ if __name__ == '__main__' :
             vitesse = int(vitesse)
             r1.deceleration(vitesse)
 
-        if (action == "resum") :
-            r1.resum()
+        if (action == "summary") :
+            r1.summary()
 
         if (action == "stop") :
             r1.stop()
