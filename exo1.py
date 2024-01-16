@@ -1,6 +1,8 @@
 import time
 import keyboard
 
+
+
 class Robot():
     
     __slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level','__speed_min')
@@ -145,7 +147,8 @@ if __name__ == '__main__' :
         #     r1.summary()
 
         # if keyboard.read_key() == "s":
-        #     r1.stop()
+        #     r1.stop()self.__current_speed = self.__current_speed - 1
+        #                time.sleep(0.2)
 
         # if keyboard.read_key() == "c":
         #     r1.charge()
