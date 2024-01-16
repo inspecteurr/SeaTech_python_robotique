@@ -3,13 +3,14 @@ import keyboard
 
 class Robot():
     
-    __slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level')
+    __slots__ = ('__name','__power', '__current_speed', '__speed_max','__battery_level','__speed_min')
         
     def __init__(self):
         self.__name = input('\nJe viens de naitre, donne moi un nom maître :-O \n')
         self.__power = False
         self.__current_speed = 0
         self.__speed_max = 100
+        self.__speed_min = -20
         self.__battery_level = 100
         self.summary()
 	
@@ -42,12 +43,18 @@ class Robot():
     def acceleration(self,vitesse):
         if (self.__power == True):
             print("\nOk je cours ! Attend moi")
-            while (self.__current_speed <vitesse) :
-                if (self.__current_speed<=self.__speed_max):
-                    self.__current_speed = self.__current_speed + 1
-                    self.__battery_level = self.__battery_level - 1
-                    
-                    time.sleep(0.2)
+            if (vitesse>0):
+                while (self.__current_speed <vitesse) :
+                    if (self.__current_speed<=self.__speed_max):
+                        self.__current_speed = self.__current_speed + 1
+                        self.__battery_level = self.__battery_level - 1
+                        time.sleep(0.2)
+            else : 
+                while (self.__current_speed >vitesse) :
+                    if (self.__current_speed>=self.__speed_min):
+                        self.__current_speed = self.__current_speed - 1
+                        self.__battery_level = self.__battery_level - 1
+                        time.sleep(0.2)
             print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed, "\nMa batterie est descendu à : ",self.__battery_level)
         else :
             print("\nIl faut m'allumer avant gros malin")
@@ -55,7 +62,7 @@ class Robot():
     def deceleration(self,vitesse):
         if (self.__power == True):
             print("\nTéma comment je tire le frein à main mon copaing !")
-            while (self.__current_speed >vitesse) :
+            while (self.__current_speed >vitesse and self.__current_speed>0) :
                 self.__current_speed = self.__current_speed - 1
                 time.sleep(0.2)
             print("\nLa vitesse a été atteinte, elle est de : ", self.__current_speed)
@@ -64,9 +71,13 @@ class Robot():
 
     def stop(self):
         if (self.__power == True):
-            while (self.__current_speed >0) :
-                    self.__current_speed = self.__current_speed - 1
-                    time.sleep(0.2)
+            while (self.__current_speed != 0) :
+                    if (vitesse>0):
+                        self.__current_speed = self.__current_speed - 1
+                        time.sleep(0.2)
+                    else :
+                        self.__current_speed = self.__current_speed + 1
+                        time.sleep(0.2)
             print("\nC'est bon, je me suis arrété, ma vitesse est de : ", self.__current_speed)
         else :
             print("\nIl faut m'allumer avant gros malin")
@@ -107,6 +118,9 @@ class Robot():
 if __name__ == '__main__' :
     r1 = Robot()
 
+    print("\nVoila ma notice : \nAllumer --> start\nAccelerer --> acceleration\nDécélérer --> décélération\summary --> summary\nStop --> stop\nCharge --> charge\Off --> off\n")
+        
+    
     while (True) :
 
 
@@ -139,7 +153,6 @@ if __name__ == '__main__' :
         # if keyboard.read_key() == "q":
         #     r1.off()
 
-        print("\nVoila ma notice : \nAllumer --> start\nAccelerer --> acceleration\nDécélérer --> décélération\summary --> summary\nStop --> stop\nCharge --> charge\Off --> off\n")
         action = input('\nJe suis à votre service, que voulez vous que je fasse ? \n')
 
         if (action == "start") :
