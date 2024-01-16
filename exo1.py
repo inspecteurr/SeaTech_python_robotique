@@ -143,9 +143,13 @@ while (True) :
         r1.allumage()
 
     if (action == "acceleration") :
+        vitesse = input('\nJe veux avancer, donne moi une vitesse : ')
+        vitesse = int(vitesse)
         r1.acceleration()
 
     if (action == "décélération") :
+        vitesse = input('\nJe veux décélérer, donne moi une vitesse : ')
+        vitesse = int(vitesse)
         r1.deceleration()
 
     if (action == "resum") :
