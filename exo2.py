@@ -77,17 +77,17 @@ class Cyborg(Robot, Human):
 
 
 
+if __name__ == '__main__' :
+    cyborg = Cyborg('Deux Ex Machina', 'M')
 
-cyborg = Cyborg('Deux Ex Machina', 'M')
-
-print(cyborg.name, ' sexe ', cyborg.sexe)
-print('Charging battery...')
-cyborg.charge()
-cyborg.eat('banana')
-cyborg.eat(['coca', 'chips'])
-cyborg.death()
-cyborg.start()
-cyborg.breathe_On()
-cyborg.death()
+    print(cyborg.name, ' sexe ', cyborg.sexe)
+    print('Charging battery...')
+    cyborg.charge()
+    cyborg.eat('banana')
+    cyborg.eat(['coca', 'chips'])
+    cyborg.death()
+    cyborg.start()
+    cyborg.breathe_On()
+    cyborg.death()
 
 # cyborg.truc_fun()
