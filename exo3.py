@@ -3,7 +3,7 @@ from abc import abstractmethod
 
 
 '''
-# EXO 3
+# EXO 
 
 ## Exigences
 
@@ -27,13 +27,13 @@ class Unmanned(metaclass=ABCMeta):
     def presentation(self):
         pass
 
-    def connexion(self):
+    def connection(self):
         print("Je suis bien connecté\n")
 
 class Vehicule(metaclass=ABCMeta):
     @property
     @abstractmethod
-    def vitesse(self):
+    def speed(self):
         pass
 
     def move(self):
@@ -44,7 +44,7 @@ class UUV(Unmanned,Vehicule):
     def presentation(self):
         print("Je suis un UUV\n")
 	
-    def vitesse(self):
+    def speed(self):
         print("Je vais à 6 knots\n")
     
     def verite (self):
@@ -55,7 +55,7 @@ class UAV(Unmanned,Vehicule):
     def presentation(self):
         print("Je suis un UAV\n")
 
-    def vitesse(self):
+    def speed(self):
         print("Je vais à 44km/h\n")
 
 class UGV(Unmanned,Vehicule):
@@ -63,13 +63,13 @@ class UGV(Unmanned,Vehicule):
     def presentation(self):
         print("Je suis un UGV\n")
 
-    def vitesse(self):
+    def speed(self):
         print("Je vais à 20km/h\n")
 
 def sherch(u: Unmanned) -> bool:
 
     print("On va chercher qui a une méthode vérité")
-    u.connexion()
+    u.connection()
     try:
         u.verite()
 	
@@ -102,18 +102,17 @@ if issubclass(UUV, Vehicule):
 uuv = UUV()
 uuv.presentation()
 uuv.move()
-uuv.connexion()
-uuv.vitesse()
+uuv.connection()
+uuv.speed()
 
 uav = UAV()
 uav.presentation()
 uav.move()
-uav.connexion()
-uav.vitesse()
+uav.connection()
+uav.speed()
 
 ugv = UGV()
 ugv.presentation()
 ugv.move()
-ugv.connexion()
-ugv.vitesse()
-
+ugv.connection()
+ugv.speed()
